@@ -34,6 +34,10 @@ TestResult.xml
 [Rr]eleasePS/
 dlldata.c
 
+*.lock
+*.ide
+*.ide-shm
+*.ide-wal
 *_i.c
 *_p.c
 *_i.h

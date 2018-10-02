@@ -38,7 +38,7 @@ namespace BattleInfoPlugin.Models.Notifiers
 
             var proxy = KanColleClient.Current.Proxy;
 
-            proxy.api_start2
+            proxy.api_start2_getData
                 .ObserveOn(SynchronizationContext.Current)
                 .Subscribe(_ => this.FindKanColleBrowser());
 

@@ -54,7 +54,7 @@ namespace BattleInfoPlugin.Models.Repositories
             this.MapCells = (obj?.MapCells).ValueOrNew();
 
             var proxy = KanColleClient.Current.Proxy;
-            proxy.Observe<kcsapi_start2>("/kcsapi/api_start2")
+            proxy.Observe<kcsapi_start2>("/kcsapi/api_start2/getData")
                 .Subscribe(x => this.Update(x.Data));
             proxy.Observe<map_start_next>("/kcsapi/api_req_map/start")
                 .Subscribe(this.Update);
@@ -88,8 +88,8 @@ namespace BattleInfoPlugin.Models.Repositories
 
         public void Update(SvData<map_start_next> start)
         {
-            var mapArea = int.Parse(start.Request["api_maparea_id"]);
-            var mapNo = int.Parse(start.Request["api_mapinfo_no"]);
+            int mapArea = start.Data.api_maparea_id;
+            var mapNo = start.Data.api_mapinfo_no;
             var infoId = this.MapAreas[mapArea][mapNo].Id;
 
             var cells = start.Data.api_cell_data
